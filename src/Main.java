@@ -41,7 +41,7 @@ public class Main {
 
     public static void readFile(String fileName) {
         ArrayList<Float> valueList = new ArrayList<>();
-        DecimalFormat df = new DecimalFormat("0.00");
+        DecimalFormat df = new DecimalFormat("$0.00");
         double total;
         double subTotal = 0;
         double tax;
@@ -65,9 +65,9 @@ public class Main {
             createFile("total.txt", false);
             File outputFile = new File("total.txt");
             FileWriter fileWriter = new FileWriter(outputFile);
-            fileWriter.write("Your sub-total is: $" + df.format(subTotal) + "\n");
-            fileWriter.write("Your tax is: $" + df.format(tax) + " (5.3%) \n");
-            fileWriter.write("Your total is: $" + df.format(total) + "\n");
+            fileWriter.write("Your sub-total is: " + df.format(subTotal) + "\n");
+            fileWriter.write("Your tax is: " + df.format(tax) + " (5.3%) \n");
+            fileWriter.write("Your total is: " + df.format(total) + "\n");
             fileWriter.close();
         } catch (IOException e) {
             System.out.println("Something broke!");
