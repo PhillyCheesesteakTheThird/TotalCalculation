@@ -27,10 +27,9 @@ public class Main {
                 FileWriter fileWriter = new FileWriter(fileName);
                 for (int i = 0; i < 23; i++) {
                     Random rd = new Random();
-                    int intValue = rd.nextInt(0, 100);
+                    int intValue = rd.nextInt(0, 50);
                     float floatValue = rd.nextFloat();
-                    float value = intValue + floatValue;
-                    String valueString = String.format("%.2f", value);
+                    String valueString = String.format("%.2f", intValue + floatValue);
                     fileWriter.write(valueString + "\n");
                 }
                 fileWriter.close();
