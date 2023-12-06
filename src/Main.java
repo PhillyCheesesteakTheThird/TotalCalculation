@@ -1,6 +1,7 @@
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Random;
 import java.io.FileNotFoundException;
@@ -12,8 +13,6 @@ public class Main {
         String fileName = "items.txt";
         createFile(fileName, true);
         readFile(fileName);
-
-
     }
 
     public static void createFile(String fileName, boolean write) {
@@ -26,10 +25,13 @@ public class Main {
             }
             if (write) {
                 FileWriter fileWriter = new FileWriter(fileName);
-                for (int i = 0; i < 45; i++) {
+                for (int i = 0; i < 23; i++) {
                     Random rd = new Random();
-                    float value = rd.nextFloat();
-                    fileWriter.write(value + "\n");
+                    int intValue = rd.nextInt(0, 100);
+                    float floatValue = rd.nextFloat();
+                    float value = intValue + floatValue;
+                    String valueString = String.format("%.2f", value);
+                    fileWriter.write(valueString + "\n");
                 }
                 fileWriter.close();
             }
@@ -40,6 +42,7 @@ public class Main {
 
     public static void readFile(String fileName) {
         ArrayList<Float> valueList = new ArrayList<>();
+        DecimalFormat df = new DecimalFormat("0.00");
         double total;
         double subTotal = 0;
         double tax;
@@ -63,9 +66,9 @@ public class Main {
             createFile("total.txt", false);
             File outputFile = new File("total.txt");
             FileWriter fileWriter = new FileWriter(outputFile);
-            fileWriter.write("Your sub-total is: " + subTotal + "\n");
-            fileWriter.write("Your tax is: " + tax + "\n");
-            fileWriter.write("Your total is: " + total + "\n");
+            fileWriter.write("Your sub-total is: $" + df.format(subTotal) + "\n");
+            fileWriter.write("Your tax is: $" + df.format(tax) + " (5.3%) \n");
+            fileWriter.write("Your total is: $" + df.format(total) + "\n");
             fileWriter.close();
         } catch (IOException e) {
             System.out.println("Something broke!");
